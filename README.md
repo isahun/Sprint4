@@ -1,4 +1,4 @@
-# Sprint 3 – Video Management Tool (Jokes App)
+# Sprint 3 – Jokes App
 
 ## Overview
 
