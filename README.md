@@ -55,9 +55,6 @@ All logic is implemented using ES6 array methods and asynchronous patterns.
 ├── package.json
 └── tsconfig.json
 
-yaml
-Copiar código
-
 ---
 
 ## Tech Stack
