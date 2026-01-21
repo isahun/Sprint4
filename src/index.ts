@@ -1,24 +1,19 @@
-//interface to define structure of API data
-interface jokeData {
-    id: string;
-    joke: string;
-    status: number;
+//Responsibility: UI painting with data collected from other files
+
+import { JokesUI } from "./jokes/JokesUI";
+
+const jokeSpace = document.querySelector<HTMLParagraphElement>('#jokeSpace');
+const button = document.querySelector<HTMLButtonElement>('#nextJokeBtn');
+
+if (!jokeSpace || !button) { //ALWAYS CHECK BEFORE USING ELEMENTS: TS needs this to have a certainty of what to do in case elements are null, otherwise it's not confident enough to add the event listener. 
+    throw new Error('Required DOM elements not found')
 }
 
-async function getJoke(): Promise<string> { //promises to return a string, but later. Always use with await
-    const response = await fetch('https://icanhazdadjoke.com/', {
-    headers: { Accept: 'application/json'}
-});
-    const data: jokeData = await response.json();
-    return data.joke;
-};
+const jokesUI = new JokesUI(jokeSpace);
 
-const jokeSpace = document.getElementById("jokeSpace") as HTMLParagraphElement;
-const button = document.getElementById("nextJokeBtn") as HTMLButtonElement;
-
-button.addEventListener('click', async () => {
-    const joke = await getJoke();
-    jokeSpace.textContent = joke;
+button.addEventListener('click', () => {
+    jokesUI.renderJoke();
+    
 });
 
 
