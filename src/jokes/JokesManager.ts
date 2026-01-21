@@ -11,7 +11,7 @@ export class JokesManager {
     private api = new ApiService();
 
     async getJoke(): Promise<string> { 
-        const useDadApi = Math.random() > 0.5;
+        const useDadApi = Math.random() > 0.5; //math.random generates decimal numbers between 0 and 1(not included), will be true 50% of the times
 
         if (useDadApi) {
             const data = await this.api.get<DadJokeResponse>(DAD_JOKE_API.url, DAD_JOKE_API.headers); //telling TS: this call will return EXACTLY this (id:string, joke:string, status:number)
