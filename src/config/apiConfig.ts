@@ -10,3 +10,7 @@ export const DAD_JOKE_API = {
 export const CHUCK_JOKE_API = { //no headers needed in this API
     url: 'https://api.chucknorris.io/jokes/random'
 }
+
+export const WEATHER_API = {
+    baseUrl: 'https://api.open-meteo.com/v1/forecast'
+}

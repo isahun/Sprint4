@@ -11,56 +11,55 @@ import { type JokeScore } from "../types/Score";
 export class JokesManager {
     private api = new ApiService();
     private currentJoke: string | null = null;
-    private score: JokeScore[] = [];
+    private report: JokeScore[] = [];
 
     async getJoke(): Promise<string> { 
         const useDadApi = Math.random() > 0.5; //math.random generates decimal numbers between 0 and 1(not included), will be true 50% of the times
 
-        let jokeText: string;
+        let jokeText: string; //to later store final joke in
 
-        console.log('---- getJoke called ----');
         console.log('Using Dad API', useDadApi);
 
         if (useDadApi) {
             console.log('Calling DAD JOKE API');
 
-            const data = await this.api.get<DadJokeResponse>({endpoint: DAD_JOKE_API.url, headers: DAD_JOKE_API.headers}); //telling TS: this call will return EXACTLY this (object = {id:string, joke:string, status:number})
+            const data = await this.api.get<DadJokeResponse>({url: DAD_JOKE_API.url, headers: DAD_JOKE_API.headers}); //telling TS: this call will return EXACTLY this (object = {id:string, joke:string, status:number})
 
-            console.log('Dad API response:', data)
+            console.log('Dad API response');
 
             jokeText = data.joke;
         } else {
             console.log('Calling CHUCK NORRIS API');
 
-            const data = await this.api.get<ChuckJokeResponse>({endpoint: CHUCK_JOKE_API.url}); //telling TS: this call will return EXACTLY this (object = {value: string})
+            const data = await this.api.get<ChuckJokeResponse>({url: CHUCK_JOKE_API.url}); //telling TS: this call will return EXACTLY this (object = {value: string})
 
-            console.log('Chuck API response: ', data)
+            console.log('Chuck API response');
 
-            jokeText = data.value;
+            jokeText = data.value; //chuck norris api uses value instead of joke
         }
 
-        //store and return last joke
+        //store and return last joke for UI to paint
         this.currentJoke = jokeText;
         return jokeText;
     }
 
-    rateCurrentJoke(score: 1 | 2 | 3):void {
-        if (!this.currentJoke) return;
+    rateCurrentJoke(score: 1 | 2 | 3):void { //this method has no return value
+        if (!this.currentJoke) return; //in case no joke is being displayed
 
-        const jokeExists = this.score.find(score => score.joke === this.currentJoke);
+        const jokeExists = this.report.find(report => report.joke === this.currentJoke); //check if currentJoke has already been scored
 
         if(jokeExists) {
             //if joke exists, allow to change score
             jokeExists.score = score;
             jokeExists.date = new Date().toISOString();
-        } else { 
-            this.score.push({
+        } else { //else, we push in the report array
+            this.report.push({
                 joke: this.currentJoke,
-                score,
+                score, //from method parameter
                 date: new Date().toISOString()
             });
         }
 
-        console.log("Joke scores: ", this.score);
+        console.log("Joke reports: ", this.report);
     }
 };

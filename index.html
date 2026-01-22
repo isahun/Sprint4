@@ -8,9 +8,22 @@
     <title>sprint4-vite-migration</title>
 </head>
 <body>
+  <div id="weatherSpace">
 
-  <p id="jokeSpace">Joke loading...</p>
+  </div>
+
+  <p id="jokeSpace">Click to start cracking up</p>
+  <button id="startJokeBtn">Hit me</button>
   <button id="nextJokeBtn">Next joke</button>
+
+  <div id="scoreContainer">
+    <legend>How did you feel about this joke?</legend>
+
+    <!-- data-* is a convention for a class of attributes called custom data attributes, they allow html and its dom to exchange info. "data-" + "our variable name". Accessible in js through .dataset -->
+    <button data-score="1">Laaame</button> 
+    <button data-score="2">Meh...</button>
+    <button data-score="3">I actually laughed outloud</button>
+  </div>
 
 <script type="module" src="/src/main.ts"></script>
 
