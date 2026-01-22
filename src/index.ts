@@ -1,4 +1,4 @@
-//Responsibility: UI painting with data collected from other files
+//Responsibility: Application entry point and event orchestration. WHEN data from jokesUI is painted. It initializes the app by selecting global DOM elements, instantiating UI components, and wiring user events. It contains NO business logic or rendering details. UI painting with data collected from other files
 
 import { JokesUI } from "./jokes/JokesUI";
 

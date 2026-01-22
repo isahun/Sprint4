@@ -1,4 +1,4 @@
-//Responsibility: To paint UI with data collected from other files. Knows nothing of APIs, nothing of TYPES, only consumes STRING
+//Responsibility: UI component responsible for rendering jokes. It encapsulates HOW a joke is displayed (loading state, text update), but does not know WHEN it should be rendered or WHERE the data comes from. Knows nothing of APIs, nothing of TYPES, only consumes STRING.
 
 import { JokesManager } from "./JokesManager";
 
@@ -14,4 +14,4 @@ export class JokesUI {
         this.jokeElement.textContent = 'Loading...';
         this.jokeElement.textContent = await this.manager.getJoke();
     }
-};
+}
