@@ -6,12 +6,17 @@
 import { ApiService  } from "../services/ApiService";
 import { DAD_JOKE_API, CHUCK_JOKE_API } from "../config/apiConfig";
 import { type DadJokeResponse, type ChuckJokeResponse } from "../types/Joke";
+import { type JokeScore } from "../types/Score";
 
 export class JokesManager {
     private api = new ApiService();
+    private currentJoke: string | null = null;
+    private score: JokeScore[] = [];
 
     async getJoke(): Promise<string> { 
         const useDadApi = Math.random() > 0.5; //math.random generates decimal numbers between 0 and 1(not included), will be true 50% of the times
+
+        let jokeText: string;
 
         console.log('---- getJoke called ----');
         console.log('Using Dad API', useDadApi);
@@ -23,7 +28,7 @@ export class JokesManager {
 
             console.log('Dad API response:', data)
 
-            return data.joke;
+            jokeText = data.joke;
         } else {
             console.log('Calling CHUCK NORRIS API');
 
@@ -31,7 +36,31 @@ export class JokesManager {
 
             console.log('Chuck API response: ', data)
 
-            return data.value;
+            jokeText = data.value;
         }
+
+        //store and return last joke
+        this.currentJoke = jokeText;
+        return jokeText;
     }
-}
+
+    rateCurrentJoke(score: 1 | 2 | 3):void {
+        if (!this.currentJoke) return;
+
+        const jokeExists = this.score.find(score => score.joke === this.currentJoke);
+
+        if(jokeExists) {
+            //if joke exists, allow to change score
+            jokeExists.score = score;
+            jokeExists.date = new Date().toISOString();
+        } else { 
+            this.score.push({
+                joke: this.currentJoke,
+                score,
+                date: new Date().toISOString()
+            });
+        }
+
+        console.log("Joke scores: ", this.score);
+    }
+};
