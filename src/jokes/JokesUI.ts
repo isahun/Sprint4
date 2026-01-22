@@ -1,6 +1,6 @@
 //Responsibility: UI component responsible for rendering jokes. It encapsulates HOW a joke is displayed (loading state, text update), but does not know WHEN it should be rendered or WHERE the data comes from. Knows nothing of APIs, nothing of TYPES, only consumes STRING.
 
-import { JokesManager } from "./JokesManager";
+import { JokesManager } from "./JokesManager.js"; // .js necessary for compiled files' modules to find each other
 
 export class JokesUI {
     private manager = new JokesManager();
