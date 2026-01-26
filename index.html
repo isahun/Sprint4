@@ -8,25 +8,47 @@
     <link href="/src/styles/style.css" rel="stylesheet">
     <title>sprint4-vite-migration</title>
 </head>
-<body>
-  <div id="weatherSpace">
+<body class="bg-black flex-col gap-10 p-3.5">
+  <header>
+    <div>
+      <h1>Jokes & Weather</h1>
+    </div>
+  </header>
+
+  <div id="weatherSpace" class="p-4 justify-end">
 
   </div>
+<main>
+  <section class="border-2 p-8 border-yellow-300 rounded-3xl mb-10 bg-black/40 backdrop-blur-3xl">
+    <blockquote class="text-center">
+      <p id="jokeSpace">Click to start cracking up</p>
+    </blockquote>
+  </section>
 
-  <p id="jokeSpace">Click to start cracking up</p>
-  <button id="startJokeBtn">Hit me</button>
-  <button id="nextJokeBtn">Next joke</button>
+  <section>
+    <div id="scoreContainer">
+      <legend>How did you feel about this joke?</legend>
 
-  <div id="scoreContainer">
-    <legend>How did you feel about this joke?</legend>
+      <!-- data-* is a convention for a class of attributes called custom data attributes, they allow html and its dom to exchange info. "data-" + "our variable name". Accessible in js through .dataset -->
+      <button data-score="1">Laaame</button> 
+      <button data-score="2">Meh...</button>
+      <button data-score="3">I actually laughed outloud</button>
+    </div>
+  </section>
 
-    <!-- data-* is a convention for a class of attributes called custom data attributes, they allow html and its dom to exchange info. "data-" + "our variable name". Accessible in js through .dataset -->
-    <button data-score="1">Laaame</button> 
-    <button data-score="2">Meh...</button>
-    <button data-score="3">I actually laughed outloud</button>
-  </div>
+  <section>
+    <button id="nextJokeBtn">Next joke</button>
+  </section>
+</main>
+
+<footer>
+  <p>IT Academy, 2026</p>
+</footer>
 
 <script type="module" src="/src/main.ts"></script>
 
 </body>
 </html>
+
+
+
