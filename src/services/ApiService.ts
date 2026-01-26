@@ -2,7 +2,7 @@
 
 //ApiRequestOptions defines the CONTRACT for any API call made through ApiService.It groups all the data needed to perform a request (url + optional headers)into a single object, making the service easier to extend and harder to misuse.
 
-// Using an options object instead of multiple parameters avoids ambiguity and allows the service to remain agnostic and scalable.
+// Using an options object instead of multiple parameters avoids ambiguity and allows service to remain agnostic and scalable.
 
 export interface ApiRequestOptions {
     url: string;
