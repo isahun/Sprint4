@@ -11,7 +11,7 @@ export interface ApiRequestOptions {
 
 export class ApiService { 
     async get<T>(options: ApiRequestOptions): Promise<T> { 
-        //GET method. <T> is expected shape of response data, about which ApiService does not care. The caller defines what T is when calling the method. This will only go through if headers exist, otherwise is UNDEFINED
+        //GET method: <T> is expected shape of response data, about which ApiService does not care. The caller defines what T is when calling the method. This will only go through if headers exist, otherwise is UNDEFINED
 
         const response = await fetch(options.url, options.headers? { headers: options.headers } : undefined); //ternary operator to check if headers has info, in case it doesn't, it captures the undefined
 
