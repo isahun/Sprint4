@@ -25,7 +25,7 @@ export class JokesManager {
 
             const data = await this.api.get<DadJokeResponse>({url: DAD_JOKE_API.url, headers: DAD_JOKE_API.headers}); //telling TS: this call will return EXACTLY this (object = {id:string, joke:string, status:number})
 
-            console.log('Dad API response');
+            console.log('Dad API response', data);
 
             jokeText = data.joke;
         } else {
@@ -33,7 +33,7 @@ export class JokesManager {
 
             const data = await this.api.get<ChuckJokeResponse>({url: CHUCK_JOKE_API.url}); //telling TS: this call will return EXACTLY this (object = {value: string})
 
-            console.log('Chuck API response');
+            console.log('Chuck API response', data);
 
             jokeText = data.value; //chuck norris api uses value instead of joke
         }
