@@ -5,11 +5,11 @@ import { type WeatherResponse } from "../types/Weather";
 export class WeatherManager {
     private api = new ApiService();
 
-    async getWeather(lat: number, lon: number): Promise<number> {
-        const url =  `${WEATHER_API.baseUrl}?latitude=${lat}&longitude=${lon}&current=temperature_2m`
+    async getWeather(lat: number, lon: number): Promise<WeatherResponse> {
+        const url =  `${WEATHER_API.baseUrl}?latitude=${lat}&longitude=${lon}&current=weather_code,temperature_2m`
 
         const data = await this.api.get<WeatherResponse>({url});
 
-        return data.current.temperature_2m;
+        return data;
     }
-}
+};
