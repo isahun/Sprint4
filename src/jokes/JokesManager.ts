@@ -5,13 +5,12 @@
 
 import { ApiService  } from "../services/ApiService";
 import { DAD_JOKE_API, CHUCK_JOKE_API } from "../config/apiConfig";
-import { type DadJokeResponse, type ChuckJokeResponse } from "../types/Joke";
-import { type JokeScore } from "../types/Score";
+import { type DadJokeResponse, type ChuckJokeResponse, type JokeScore } from "../types/Joke";
 
 export class JokesManager {
     private api = new ApiService();
     private currentJoke: string | null = null;
-    private report: JokeScore[] = [];
+    private report: JokeScore[] = []; //will store an array of objects shaped like JokeScore
 
     async getJoke(): Promise<string> { 
         const useDadApi = Math.random() > 0.5; //math.random generates decimal numbers between 0 and 1(not included), will be true 50% of the times
@@ -52,6 +51,7 @@ export class JokesManager {
             //if joke exists, allow to change score
             jokeExists.score = score;
             jokeExists.date = new Date().toISOString();
+
         } else { //else, we push in the report array
             this.report.push({
                 joke: this.currentJoke,
@@ -62,4 +62,12 @@ export class JokesManager {
 
         console.log("Joke reports: ", this.report);
     }
-};
+
+    clearJoke():void {
+        if(!this.currentJoke) return;
+        //create new array with all jokes reports but the current's
+        this.report = this.report.filter(
+            report => report.joke !== this.currentJoke
+        );
+    }
+}
