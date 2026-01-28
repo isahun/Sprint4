@@ -15,38 +15,48 @@
     </div>
   </header>
 
-  <div id="weatherSpace" class="p-4 justify-end">
+  <section class="weather-container">
+    <input type="number" id="latitude" placeholder="Insert your latitude" class="border-2 rounded-2xl p-1.5">
+    <input type="number" id="longitude" placeholder="Insert your longitude" class="border-2 rounded-2xl p-1.5">
+    <button id="weatherBtn" aria-label="Calculate temperature button">Find out the weather in your area</button>
+    <div id="weatherSpace" class="p-1.5">
 
-  </div>
-<main>
-  <section class="border-2 p-8 border-yellow-300 rounded-3xl mb-10 bg-black/40 backdrop-blur-3xl">
-    <blockquote class="text-center">
-      <p id="jokeSpace">Click to start cracking up</p>
-    </blockquote>
-  </section>
+    </div>
 
-  <section>
-    <div id="scoreContainer">
-      <legend>How did you feel about this joke?</legend>
-
-      <!-- data-* is a convention for a class of attributes called custom data attributes, they allow html and its dom to exchange info. "data-" + "our variable name". Accessible in js through .dataset -->
-      <button data-score="1">Laaame</button> 
-      <button data-score="2">Meh...</button>
-      <button data-score="3">I actually laughed outloud</button>
+    <div id="iconSpace" class="p-1.5">
+      <img id="weatherIcon">
     </div>
   </section>
 
-  <section>
-    <button id="nextJokeBtn">Next joke</button>
-  </section>
-</main>
+  <main>
+    <section class="border-2 p-8 border-yellow-300 rounded-3xl mb-10 bg-black/40 backdrop-blur-3xl">
+      <blockquote class="text-center">
+        <p id="jokeSpace">Click to start cracking up</p>
+      </blockquote>
+    </section>
 
-<footer>
-  <p>IT Academy, 2026</p>
-</footer>
+    <section>
+      <div id="scoreContainer">
+        <legend>How did you feel about this joke?</legend>
 
-<script type="module" src="/src/main.ts"></script>
+        <!-- data-* is a convention for a class of attributes called custom data attributes, they allow html and its dom to exchange info. "data-" + "our variable name". Accessible in js through .dataset -->
+        <button data-score="1" class="scoreBtn" aria-label="Rate joke with 1, equivalent to 'Lame'">Laaame</button> 
+        <button data-score="2" class="scoreBtn" aria-label="Rate joke with 2, equivalent to 'Meh...'">Meh...</button>
+        <button data-score="3" class="scoreBtn" aria-label="Rate joke with 3, equivalent to 'I actually laughed outloud'">I actually laughed outloud</button>
+      </div>
+    </section>
 
+    <section>
+      <button id="nextJokeBtn" aria-label="Move to next joke">Next joke</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>IT Academy, 2026</p>
+  </footer>
+
+
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
 
