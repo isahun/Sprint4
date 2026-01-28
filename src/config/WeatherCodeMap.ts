@@ -2,7 +2,6 @@ import { type WeatherCodeEntry } from "../types/Weather";
 
 export const WEATHER_CODE_MAP: Record<number, WeatherCodeEntry> = {
     //Record<K, V> returns an object where all keys are K type, and all values are V type
-    
     //In this case, an object indexed by numbers (weather code) that always returns a WeatherCodeEntry object
 
     0: {
