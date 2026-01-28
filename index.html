@@ -38,11 +38,14 @@
     <section>
       <div id="scoreContainer">
         <legend>How did you feel about this joke?</legend>
-
-        <!-- data-* is a convention for a class of attributes called custom data attributes, they allow html and its dom to exchange info. "data-" + "our variable name". Accessible in js through .dataset -->
-        <button data-score="1" class="scoreBtn" aria-label="Rate joke with 1, equivalent to 'Lame'">Laaame</button> 
-        <button data-score="2" class="scoreBtn" aria-label="Rate joke with 2, equivalent to 'Meh...'">Meh...</button>
-        <button data-score="3" class="scoreBtn" aria-label="Rate joke with 3, equivalent to 'I actually laughed outloud'">I actually laughed outloud</button>
+          <select id="jokeScore">
+            <option value="">Rate the joke</option>
+            <option value="1">😒 Lame</option>
+            <option value="2">😐 Meh</option>
+            <option value="3">😂 Loved it</option>
+          </select>
+          
+          <button id="clearScore">Clear score</button>
       </div>
     </section>
 

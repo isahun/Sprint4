@@ -5,16 +5,17 @@ import { WeatherUI } from './weather/WeatherUI';
 
 const jokeSpace = document.querySelector<HTMLParagraphElement>('#jokeSpace');
 const button = document.querySelector<HTMLButtonElement>('#nextJokeBtn');
-const scoreCont = document.querySelector<HTMLFieldSetElement>('#scoreContainer');
+const scoreSelect = document.querySelector<HTMLSelectElement>('#jokeScore');
 const weatherSpace = document.querySelector<HTMLDivElement>('#weatherSpace');
 const iconSpace = document.querySelector<HTMLImageElement>('#weatherIcon');
 const weatherBtn = document.querySelector<HTMLButtonElement>('#weatherBtn');
+const clearBtn = document.querySelector<HTMLButtonElement>('#clearScore');
 
-if (!jokeSpace || !button || !scoreCont || !weatherSpace || !iconSpace || !weatherBtn) { //ALWAYS CHECK BEFORE USING ELEMENTS: TS needs this to have a certainty of what to do in case elements are null, otherwise it's not confident enough to add the event listener. 
+if (!jokeSpace || !button || !scoreSelect || !weatherSpace || !iconSpace || !weatherBtn || !clearBtn) { //ALWAYS CHECK BEFORE USING ELEMENTS: TS needs this to have a certainty of what to do in case elements are null, otherwise it's not confident enough to add the event listener. 
     throw new Error('Required DOM elements not found')
 }
 
-const jokesUI = new JokesUI(jokeSpace);
+const jokesUI = new JokesUI(jokeSpace, button);
 const weatherUI = new WeatherUI(weatherSpace, iconSpace);
 
 button.addEventListener('click', () => {
@@ -22,7 +23,7 @@ button.addEventListener('click', () => {
 });
 
 //Attach score interactions to UI component
-jokesUI.attachScoreBtns(scoreCont);
+jokesUI.attachScoreSelect(scoreSelect, clearBtn);
 
 weatherBtn.addEventListener('click', () => {
     weatherUI.renderTemp();
