@@ -7,3 +7,8 @@ export interface DadJokeResponse {
 export interface ChuckJokeResponse {
     value: string;
 }
+export interface JokeScore {
+    joke: string;
+    score: 1 | 2 | 3;
+    date: string; //ISO format
+}
