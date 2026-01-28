@@ -20,7 +20,7 @@ export class JokesUI {
         this.jokeElement.textContent = await this.manager.getJoke();
 
         if(!this.anyJoke) {
-            this.button.textContent = "Next joke"
+            this.button.textContent = "Next joke";
             this.anyJoke = true;
         }
     }

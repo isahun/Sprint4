@@ -1,7 +1,7 @@
 import { type WeatherIconInfo } from "../types/Weather";
 import { WEATHER_CODE_MAP } from "../config/WeatherCodeMap";
 
-function isDayOrNight():boolean {
+export function isItDaytime():boolean {
     const hour = new Date().getHours();
     return hour >= 6 && hour <= 20;
 }
@@ -16,5 +16,5 @@ export function getIconData(wCode: number): WeatherIconInfo {
         };
     }
 
-    return isDayOrNight()? weatherEntry.day : weatherEntry.night;
+    return isItDaytime()? weatherEntry.day : weatherEntry.night;
 };
