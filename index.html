@@ -37,7 +37,7 @@
 
     <section>
       <div id="scoreContainer">
-        <legend>How did you feel about this joke?</legend>
+        <legend id="scoreQuestion">How did you feel about this joke?</legend>
           <select id="jokeScore">
             <option value="">Rate the joke</option>
             <option value="1">😒 Lame</option>
@@ -45,12 +45,17 @@
             <option value="3">😂 Loved it</option>
           </select>
           
+          <button id="showReport">Show jokes report</button>
           <button id="clearScore">Clear score</button>
       </div>
     </section>
 
     <section>
       <button id="nextJokeBtn" aria-label="Move to next joke">Next joke</button>
+    </section>
+
+    <section id="scoreSection">
+      <p id="scoreElement"></p>
     </section>
   </main>
 
