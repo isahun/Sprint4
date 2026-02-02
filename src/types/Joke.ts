@@ -9,6 +9,6 @@ export interface ChuckJokeResponse {
 }
 export interface JokeScore {
     joke: string;
-    score: 1 | 2 | 3;
+    score: 1 | 2 | 3 | "Not rated";
     date: string; //ISO format
 }

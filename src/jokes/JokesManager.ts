@@ -9,10 +9,17 @@ import { type DadJokeResponse, type ChuckJokeResponse, type JokeScore } from "..
 
 export class JokesManager {
     private api = new ApiService();
-    private currentJoke: string | null = null;
+    
+    //current joke
+    private currentJoke: string | null = null; //null bc we still don't know what the user will choose
+    private currentScore: 1 | 2 | 3 | null = null;
     private report: JokeScore[] = []; //will store an array of objects shaped like JokeScore
 
-    async getJoke(): Promise<string> { 
+
+    async getJoke(): Promise<string> {
+        //close previous jk before loading new one
+        this.endCurrentJoke();
+
         const useDadApi = Math.random() > 0.5; //math.random generates decimal numbers between 0 and 1(not included), will be true 50% of the times
 
         let jokeText: string; //to later store final joke in
@@ -39,35 +46,51 @@ export class JokesManager {
 
         //store and return last joke for UI to paint
         this.currentJoke = jokeText;
+        this.currentScore = null;
+
         return jokeText;
     }
 
-    rateCurrentJoke(score: 1 | 2 | 3):void { //this method has no return value
+    rateCurrentJoke(score: 1 | 2 | 3): void { //this method has no return value
         if (!this.currentJoke) return; //in case no joke is being displayed
+        this.currentScore = score;
+    }
+
+    clearCurrentScore():void {
+        if(!this.currentJoke) return;
+        //create new array with all jokes reports but the current's
+        this.currentScore = null;
+        
+        console.log("Jokes reports:", this.report);
+    }
+    
+    private endCurrentJoke():void {
+        if(!this.currentJoke) return;
+
+        const finalScore: 1|2|3|"Not rated" = this.currentScore ?? "Not rated"; //if current score is 1|2|3, save value, if it's null save string
 
         const jokeExists = this.report.find(report => report.joke === this.currentJoke); //check if currentJoke has already been scored
 
         if(jokeExists) {
             //if joke exists, allow to change score
-            jokeExists.score = score;
+            jokeExists.score = finalScore;
             jokeExists.date = new Date().toISOString();
-
         } else { //else, we push in the report array
             this.report.push({
                 joke: this.currentJoke,
-                score, //from method parameter
+                score: finalScore, //from method parameter
                 date: new Date().toISOString()
             });
         }
 
+        //once joke is saved in report, it no longer exists as "current"
+        this.currentJoke = null;
+        this.currentScore = null;
+        
         console.log("Joke reports: ", this.report);
     }
 
-    clearJoke():void {
-        if(!this.currentJoke) return;
-        //create new array with all jokes reports but the current's
-        this.report = this.report.filter(
-            report => report.joke !== this.currentJoke
-        );
+    showReport(): JokeScore[] {
+        return [...this.report];
     }
 }
