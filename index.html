@@ -8,28 +8,31 @@
     <link href="/src/styles/style.css" rel="stylesheet">
     <title>sprint4-vite-migration</title>
 </head>
-<body class="bg-black flex-col gap-10 p-3.5">
-  <header>
-    <div>
-      <h1>Jokes & Weather</h1>
-    </div>
-  </header>
+<body class="bg-black min-h-screen flex flex-col items-center justify-center">
+  <main class="bg-black w-full max-w-md p-6 rounded-xl shadow-md">
+    <header>
+      <div>
+        <h1 class="p-3.5">Jokes & Weather</h1>
+      </div>
+    </header>
 
-  <section class="weather-container">
-    <input type="number" id="latitude" placeholder="Insert your latitude" class="border-2 rounded-2xl p-1.5">
-    <input type="number" id="longitude" placeholder="Insert your longitude" class="border-2 rounded-2xl p-1.5">
-    <button id="weatherBtn" aria-label="Calculate temperature button">Find out the weather in your area</button>
-    <div id="weatherSpace" class="p-1.5">
+    <!-- weather -->
+    <section class="flex flex-col weather-container text-center mb-6 gap-3">
+      <input type="number" id="latitude" placeholder="Insert your latitude" class="border-2 text-center rounded-2xl p-1.5">
+      <input type="number" id="longitude" placeholder="Insert your longitude" class="text-center border-2 rounded-2xl p-1.5">
+      <label for="weatherBtn">Find out the weather in your location:</label>
+      <button id="weatherBtn" aria-label="Calculate temperature button">Click</button>
+      
+      <div id="weatherSpace" class="text-lg font-medium">
+      </div>
 
-    </div>
-
-    <div id="iconSpace" class="p-1.5">
-      <img id="weatherIcon">
-    </div>
-  </section>
-
-  <main>
-    <section class="border-2 p-8 border-yellow-300 rounded-3xl mb-10 bg-black/40 backdrop-blur-3xl">
+      <div id="iconSpace" class="mx-auto mt-2 w-16 h-16">
+        <img id="weatherIcon">
+      </div>
+    </section>
+  
+    <!-- joke -->
+    <section class="border-2 p-8 border-yellow-300 rounded-3xl mb-10 bg-black/40 backdrop-blur-3xl text-center">
       <blockquote class="text-center">
         <p id="jokeSpace">Click to start cracking up</p>
       </blockquote>
