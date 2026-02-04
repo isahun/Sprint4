@@ -8,6 +8,7 @@ export function isItDaytime():boolean {
 
 export function getIconData(wCode: number): WeatherIconInfo {
     const weatherEntry = WEATHER_CODE_MAP[wCode];
+    const isDay = isItDaytime();
 
     if (!weatherEntry) {
         return {
@@ -16,5 +17,5 @@ export function getIconData(wCode: number): WeatherIconInfo {
         };
     }
 
-    return isItDaytime()? weatherEntry.day : weatherEntry.night;
+    return isDay ? weatherEntry.day : weatherEntry.night;
 };

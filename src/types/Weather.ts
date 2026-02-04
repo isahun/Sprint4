@@ -4,7 +4,6 @@ export interface WeatherResponse {
         temperature_2m: number;
     }
 }
-
 export interface WeatherIconInfo {
     iconURL: string;
     label: string;
