@@ -19,11 +19,17 @@ export class WeatherUI {
             throw new Error ("DOM elements not found");
         };
 
+        if (lat.value === "" || long.value === "") {
+            this.weatherElement.textContent = "Please enter both latitude and longitud."
+            return
+        }
+
         const latVal = Number(lat.value);
         const longVal = Number(long.value);
 
         if (isNaN(latVal) || isNaN(longVal) || latVal > 90 || latVal < -90 || longVal > 180 || longVal < -180) {
             this.weatherElement.textContent = "Please try a valid number (-180 to 180 for longitude and -90 to 90 for latitude)";
+            return
         };
 
         const data = await this.manager.getWeather(latVal, longVal);
