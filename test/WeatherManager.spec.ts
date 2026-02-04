@@ -19,8 +19,7 @@ vi.mock('../src/services/ApiService', () => {
 });
 
 describe('WeatherManager', () => {
-
-    it('returns temperature as a number from API data', async () => {
+    it('returns current weather data from API response', async () => {
         
         //Arrange: weatherManager instance using mock ApiService
         const manager = new WeatherManager();
@@ -30,7 +29,9 @@ describe('WeatherManager', () => {
 
         //Assert: check result is the one expected
         //1. Check if it's a number
-        expect(typeof result).toBe('number');
+        expect(typeof result).toBe('object');
+        expect(typeof result.current.temperature_2m).toBe('number');
+        expect(typeof result.current.weather_code).toBe('number');
         expect(result.current).toHaveProperty('temperature_2m');
         expect(result.current).toHaveProperty('weather_code');
 
