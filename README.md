@@ -46,14 +46,44 @@ All logic is implemented using ES6 array methods and asynchronous patterns.
 ## Project Structure
 
 ├── src/
-│ ├── scripts/ # Application logic
-│ ├── styles/ # Stylesheets
-│ └── index.ts # Entry point
-├── public/
-│ └── index.html
-├── README.md
+│   ├── config/
+│   │   ├── apiConfig.ts          # API configuration (base URLs, keys)
+│   │   └── WeatherCodeMap.ts     # Weather code → description mapping
+│   │
+│   ├── jokes/
+│   │   ├── JokesManager.ts       # Jokes domain logic & state handling
+│   │   ├── JokesUI.ts            # Jokes UI rendering & interactions
+│   │   └── types.ts              # Joke-related TypeScript types
+│   │
+│   ├── services/
+│   │   └── ApiService.ts         # Generic API fetch abstraction
+│   │
+│   ├── styles/
+│   │   └── style.css             # Global styles (Tailwind + custom CSS)
+│   │
+│   ├── types/
+│   │   ├── Joke.ts               # Shared Joke interfaces
+│   │   └── Weather.ts            # Shared Weather interfaces
+│   │
+│   ├── weather/
+│   │   ├── WeatherIconData.ts    # Weather icon mapping logic
+│   │   ├── WeatherManager.ts     # Weather domain logic & state handling
+│   │   └── WeatherUI.ts          # Weather widget UI & interactions
+│   │
+│   └── main.ts                   # Application entry point & orchestration
+│
+├── test/
+│   ├── JokesManager.spec.ts
+│   ├── WeatherCodeMap.spec.ts
+│   └── WeatherManager.spec.ts
+│
+├── .gitignore
+├── index.html                    # Vite entry HTML
 ├── package.json
-└── tsconfig.json
+├── package-lock.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
 
 ---
 
