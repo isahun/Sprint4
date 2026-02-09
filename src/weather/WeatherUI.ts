@@ -5,10 +5,25 @@ export class WeatherUI {
     private manager = new WeatherManager();
     private weatherElement: HTMLDivElement;
     private iconElement: HTMLImageElement;
+    private widgetElement: HTMLElement;
 
-    constructor(weatherElement: HTMLDivElement, iconElement: HTMLImageElement) {
+    constructor(weatherElement: HTMLDivElement, iconElement: HTMLImageElement, widgetElement: HTMLElement)
+
+    {
         this.weatherElement = weatherElement;
         this.iconElement = iconElement;
+        this.widgetElement = widgetElement;
+
+    }
+
+    private expandWidget() {
+        this.widgetElement.classList.remove("weather-collapsed");
+        this.widgetElement.classList.add("weather-expanded");
+    }
+
+    private collapseWidget() {
+        this.widgetElement.classList.remove("weather-expanded");
+        this.widgetElement.classList.add("weather-collapsed");
     }
 
     async renderTemp() {
@@ -21,7 +36,8 @@ export class WeatherUI {
 
         if (lat.value === "" || long.value === "") {
             this.weatherElement.textContent = "Please enter both latitude and longitud."
-            return
+            this.collapseWidget();
+            return;
         }
 
         const latVal = Number(lat.value);
@@ -29,7 +45,8 @@ export class WeatherUI {
 
         if (isNaN(latVal) || isNaN(longVal) || latVal > 90 || latVal < -90 || longVal > 180 || longVal < -180) {
             this.weatherElement.textContent = "Please try a valid number (-180 to 180 for longitude and -90 to 90 for latitude)";
-            return
+            this.collapseWidget();
+            return;
         };
 
         const data = await this.manager.getWeather(latVal, longVal);
@@ -48,6 +65,8 @@ export class WeatherUI {
 
         this.iconElement.src = iconURL;
         this.iconElement.alt = iconLabel;
+        
+        this.expandWidget();
     }
 }
 
