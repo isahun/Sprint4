@@ -8,61 +8,66 @@
     <link href="/src/styles/style.css" rel="stylesheet">
     <title>sprint4-vite-migration</title>
 </head>
-<body class="bg-black min-h-screen flex flex-col items-center justify-center">
-  <main class="bg-black w-full max-w-md p-6 rounded-xl shadow-md">
-    <header>
-      <div>
-        <h1 class="p-3.5">Jokes & Weather</h1>
-      </div>
+<body class="bg-black min-h-screen flex flex-col items-center">
+    <!-- Header / navbar -->
+    <header class="flex flex-col w-full max-w-3xl px-6 pt-8 pb-4 text-center mb-6">
+        <h1>Jokes & Weather</h1>
     </header>
 
-    <!-- weather -->
-    <section class="flex flex-col weather-container text-center mb-6 gap-3">
-      <input type="number" id="latitude" placeholder="Insert your latitude" class="border-2 text-center rounded-2xl p-1.5">
-      <input type="number" id="longitude" placeholder="Insert your longitude" class="text-center border-2 rounded-2xl p-1.5">
-      <label for="weatherBtn">Find out the weather in your location:</label>
-      <button id="weatherBtn" aria-label="Calculate temperature button">Click</button>
-      
-      <div id="weatherSpace" class="text-lg font-medium">
-      </div>
+    <main class="w-full max-w-3xl p-6 flex-1 flex flex-col items-center justify-center px-6">
 
-      <div id="iconSpace" class="mx-auto mt-2 w-16 h-16">
-        <img id="weatherIcon">
-      </div>
-    </section>
-  
-    <!-- joke -->
-    <section class="border-2 p-8 border-yellow-300 rounded-3xl mb-10 bg-black/40 backdrop-blur-3xl text-center">
-      <blockquote class="text-center">
-        <p id="jokeSpace">Click to start cracking up</p>
-      </blockquote>
-    </section>
+      <!-- weather inputs + btn -->
+      <section id="weatherWidget" class="weather-collapsed fixed top-32 right-6 z-50 w-44 max-h-max flex flex-col border-2 border-zinc-700 rounded-3xl bg-black/70 backdrop-blur-xl text-center mb-6 gap-3 p-4 text-xs">
+        
+        <input type="number" id="latitude" placeholder="Insert your latitude" class="input-base">
+        <input type="number" id="longitude" placeholder="Insert your longitude" class="input-base">
+        
+        <label for="weatherBtn">Find out the weather in your location:</label>
+        <button id="weatherBtn" class="btn-primary">Click</button>
+        
+        <!--weather result-->
+        <div id="weatherSpace" class="text-xs text-yellow-400">
+        </div>
 
-    <section>
-      <div id="scoreContainer">
-        <legend id="scoreQuestion">How did you feel about this joke?</legend>
-          <select id="jokeScore">
+        <div id="iconSpace" class="mx-auto mt-2 w-16 h-16">
+          <img id="weatherIcon" class="w-full h-full object-contain">
+        </div>
+      </section>
+
+      <!-- joke -->
+      <section class="border-2 border-yellow-400 max-w-100 rounded-3xl p-6 text-center bg-black/40 backdrop-blur-3xl">
+        <blockquote class="mb-6 p-5 border border-gray-700 border-b-4 rounded-3xl">
+          <p id="jokeSpace">Click the button below to start cracking up</p>
+        </blockquote>
+
+      <!-- joke score-->
+        <fieldset id="scoreContainer" class="mb-4">
+          <legend id="scoreQuestion" class="mb-2 text-xs">How did you feel about this joke?</legend>
+            
+          <select id="jokeScore" class="input-base w-auto  mb-6">
             <option value="">Rate the joke</option>
             <option value="1">😒 Lame</option>
             <option value="2">😐 Meh</option>
             <option value="3">😂 Loved it</option>
           </select>
-          
-          <button id="showReport">Show jokes report</button>
-          <button id="clearScore">Clear score</button>
-      </div>
-    </section>
+            
+          <span class="flex gap-2 justify-center">
+            <button id="clearScore" class="btn-secondary">Clear score</button>
+            <button id="showReport" class="btn-secondary">Show jokes report</button>
+          </span>
+        </fieldset>
 
-    <section>
-      <button id="nextJokeBtn" aria-label="Move to next joke">Next joke</button>
-    </section>
+      <!-- next joke button-->
+      <button id="nextJokeBtn" class="btn-primary">Next joke</button>
 
-    <section id="scoreSection">
-      <p id="scoreElement"></p>
-    </section>
+      </section>
+
+      <section id="scoreSection" class="report-card text-center">
+        <p id="scoreElement" class="report mt-4"></p>
+      </section>
   </main>
 
-  <footer>
+  <footer class="mt-8 mb-3 footer-text">
     <p>IT Academy, 2026</p>
   </footer>
 
