@@ -17,49 +17,81 @@
     <main class="w-full max-w-3xl p-6 flex-1 flex flex-col items-center justify-center px-6">
 
       <!-- weather inputs + btn -->
-      <section id="weatherWidget" class="weather-collapsed fixed top-32 right-6 z-50 w-44 max-h-max flex flex-col border-2 border-zinc-700 rounded-3xl bg-black/70 backdrop-blur-xl text-center mb-6 gap-3 p-4 text-xs">
+      <aside id="weatherWidget" class="weather-collapsed fixed top-32 right-6 z-50 w-44 max-h-max flex flex-col border-2 border-zinc-700 rounded-3xl bg-black/70 backdrop-blur-xl text-center mb-6 gap-3 p-4 text-xs" aria-labelledby="weather">
         
-        <input type="number" id="latitude" placeholder="Insert your latitude" class="input-base">
-        <input type="number" id="longitude" placeholder="Insert your longitude" class="input-base">
-        
-        <label for="weatherBtn">Find out the weather in your location:</label>
-        <button id="weatherBtn" class="btn-primary">Click</button>
+        <h2 id="weatherTitle">Weather widget</h2>
+          <form aria-describedby="weatherHelp">
+            <p id="weatherHelp" class="sr-only">
+              Enter latitude and longitude to get the weather
+            </p>
+
+            <div class="flex flex-col gap-2">
+              <label for="latitude">Latitude</label>
+              <input
+                type="number"
+                id="latitude"
+                name="latitude"
+                class="input-base"
+                required
+              />
+
+              <label for="longitude">Longitude</label>
+              <input
+                type="number"
+                id="longitude"
+                name="longitude"
+                class="input-base"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              id="weatherBtn"
+              class="btn-primary mt-3"
+            >
+              Get weather
+            </button>
+        </form>        
         
         <!--weather result-->
-        <div id="weatherSpace" class="text-xs text-yellow-400">
+        <div id="weatherSpace" class="text-xs text-yellow-400" aria-live="polite">
         </div>
 
         <div id="iconSpace" class="mx-auto mt-2 w-16 h-16">
-          <img id="weatherIcon" class="w-full h-full object-contain">
+          <img id="weatherIcon" class="w-full h-full object-contain" aria-hidden="true">
         </div>
-      </section>
+      </aside>
 
       <!-- joke -->
-      <section class="border-2 border-yellow-400 max-w-100 rounded-3xl p-6 text-center bg-black/40 backdrop-blur-3xl">
-        <blockquote class="mb-6 p-5 border border-gray-700 border-b-4 rounded-3xl">
-          <p id="jokeSpace">Click the button below to start cracking up</p>
-        </blockquote>
+      <section aria-labelledby="jokesTitle" class="flex flex-col justify-center items-center">
+        <h2 id="jokesTitle" class="mb-3">Jokes</h2>
+          <article class="border-2 border-yellow-400 max-w-100 rounded-3xl p-6 text-center bg-black/40 backdrop-blur-3xl">
+            <blockquote class="mb-6 p-5 border border-gray-700 border-b-4 rounded-3xl">
+              <p id="jokeSpace" aria-live="polite">Click the button below to start cracking up</p>
+            </blockquote>
 
-      <!-- joke score-->
-        <fieldset id="scoreContainer" class="mb-4">
-          <legend id="scoreQuestion" class="mb-2 text-xs">How did you feel about this joke?</legend>
-            
-          <select id="jokeScore" class="input-base w-auto  mb-6">
-            <option value="">Rate the joke</option>
-            <option value="1">😒 Lame</option>
-            <option value="2">😐 Meh</option>
-            <option value="3">😂 Loved it</option>
-          </select>
-            
-          <span class="flex gap-2 justify-center">
-            <button id="clearScore" class="btn-secondary">Clear score</button>
-            <button id="showReport" class="btn-secondary">Show jokes report</button>
-          </span>
-        </fieldset>
+          <!-- joke score-->
+            <fieldset id="scoreContainer" class="mb-4">
+              <legend id="scoreQuestion" class="mb-2 text-xs">How did you feel about this joke?</legend>
+                
+              <select id="jokeScore" class="input-base w-auto  mb-6">
+                <option value="">Rate the joke</option>
+                <option value="1">😒 Lame</option>
+                <option value="2">😐 Meh</option>
+                <option value="3">😂 Loved it</option>
+              </select>
+                
+              <div class="flex gap-2 justify-center">
+                <button id="clearScore" class="btn-secondary">Clear score</button>
+                <button id="showReport" class="btn-secondary">Show jokes report</button>
+              </d>
+            </fieldset>
 
-      <!-- next joke button-->
-      <button id="nextJokeBtn" class="btn-primary">Next joke</button>
+          <!-- next joke button-->
+          <button id="nextJokeBtn" class="btn-primary">Next joke</button>
 
+          </article>
       </section>
 
       <section id="scoreSection" class="report-card text-center">
