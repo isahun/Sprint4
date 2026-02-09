@@ -14,14 +14,14 @@ const scQuestion = document.querySelector<HTMLLegendElement>("#scoreQuestion");
 const weatherSpace = document.querySelector<HTMLDivElement>('#weatherSpace');
 const iconSpace = document.querySelector<HTMLImageElement>('#weatherIcon');
 const weatherBtn = document.querySelector<HTMLButtonElement>('#weatherBtn');
+const weatherWidget = document.querySelector<HTMLElement>('#weatherWidget');
 
-
-if (!jokeSpace || !button || !scoreSelect || !weatherSpace || !iconSpace || !weatherBtn || !clearBtn || !showReportBtn || !reportElement || !scQuestion) { //ALWAYS CHECK BEFORE USING ELEMENTS: TS needs this to have a certainty of what to do in case elements are null, otherwise it's not confident enough to add the event listener. 
+if (!jokeSpace || !button || !scoreSelect || !weatherSpace || !iconSpace || !weatherBtn || !clearBtn || !showReportBtn || !reportElement || !scQuestion || !weatherWidget) { //ALWAYS CHECK BEFORE USING ELEMENTS: TS needs this to have a certainty of what to do in case elements are null, otherwise it's not confident enough to add the event listener. 
     throw new Error('Required DOM elements not found')
 }
 
 const jokesUI = new JokesUI(jokeSpace, button, reportElement, scoreSelect, clearBtn, showReportBtn, scQuestion);
-const weatherUI = new WeatherUI(weatherSpace, iconSpace);
+const weatherUI = new WeatherUI(weatherSpace, iconSpace, weatherWidget);
 
 button.addEventListener('click', () => {
     jokesUI.renderJoke();
